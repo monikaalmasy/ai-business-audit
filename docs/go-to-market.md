@@ -1,5 +1,18 @@
 # Go-to-Market Strategy
 
+## Marketing Strategy Update
+
+**Decision (2026-04-07):** This product's marketing is completely separate from the Spawni content engine. No mascot, no TikTok, no faceless videos.
+
+Primary marketing channels for this product:
+1. **Cold email** with free audit offers (B2B, compliant with Australian Spam Act)
+2. **LinkedIn content** — authority-building posts about business automation
+3. **Free audit as lead magnet** — every free report is a sales pitch
+4. **Google Ads** (later, once profitable) — target "[profession] automation" keywords
+5. **Referrals** from satisfied clients
+
+The Spawni content engine (mascot on Instagram/TikTok) promotes Spawni SaaS only and has no connection to this brand.
+
 ## Core Positioning
 
 **The free audit IS the marketing.** Every distribution channel leads to the same action: get the business owner to record a voice note and receive their free AI audit report. The report sells the paid service. There is no sales team, no outbound calling, no slide decks. The product sells itself.

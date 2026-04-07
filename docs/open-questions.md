@@ -8,6 +8,8 @@ Items discussed but NOT finalized. These need further exploration before becomin
 - **If merged into Spawni later**: The AI angle becomes a feature, not something to downplay. Different positioning for different audiences.
 - **Decision needed**: Define the exact customer-facing language for the standalone brand.
 
+**Decision (2026-04-07):** Standalone brand confirmed. Anonymous company (no personal name/photo). "Team of experts" positioning. Part of ONE company that also offers the SEO SaaS product.
+
 ## Onboarding Calls
 
 - **Option A: No calls at all** (current plan) — Voice note + file upload only. Best information quality, fully async, most automated.
@@ -15,6 +17,8 @@ Items discussed but NOT finalized. These need further exploration before becomin
 - **Option C: Hire a salesperson/BD person** — Goes to meetings, does discovery. Concern: loses credibility when they can't answer deep questions. Could work as "intake specialist" who says "let me take this back to the team."
 - **Current leaning**: Option A primary, Option B available as premium add-on. Option C deferred — too much overhead for now.
 - **Decision needed**: Whether to offer Zoom option at all, or keep it purely async.
+
+**Decision (2026-04-07):** Start with 100% automated async approach. User willing to invest 10+ hours/week reviewing deliverables. Optional Zoom calls may be introduced later as a premium add-on once user gains confidence from reviewing backend logs and learning the consulting process.
 
 ## Screen Recording Intake
 
@@ -40,6 +44,22 @@ Items discussed but NOT finalized. These need further exploration before becomin
 - **Cons**: Trust problem — can't answer deep technical questions. "Let me take this back to the team" works but feels junior. Salary adds fixed costs before revenue is proven.
 - **Assessment**: Premature for launch. Revisit after 10+ paying clients when the model is validated and there's revenue to support a hire.
 - **Decision needed**: Deferred until post-validation.
+
+## Target Market
+
+**Decision (2026-04-07):** First target is small businesses with 5-20 employees (dental offices, law firms, accounting practices, real estate agencies, trades). Decision-maker is the owner. $2-3K/month ticket size. Need ~10 clients for $25K/month revenue target.
+
+Rationale: Owner decides alone (no committees), real budgets, simple systems (5-10 tools), fits async model, "team of experts" positioning appropriate at this tier.
+
+## MVP Scope
+
+**Decision (2026-04-07):** Full automated pipeline before taking clients. Voice transcription, AI analysis, auto-generated questionnaire, auto-generated report — all working end-to-end. Estimated 2-4 weeks build time.
+
+Rationale: User wants polished experience from day one. 10+ hours/week time budget supports thorough build. Full automation aligns with $25K/month scaling target.
+
+## Revenue Target
+
+**Decision (2026-04-07):** $25K+ per month within 6 months, replacing a full salary. This is the primary business, not a side project.
 
 ## Spawni Integration Timeline
 

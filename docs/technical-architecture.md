@@ -125,6 +125,8 @@ Option B: Deepgram API (hosted, fast)
   - Processing time: ~10-30 seconds for a 10-minute recording
   - Advantage: faster, more reliable, no server GPU needed
 
+**Pricing note (verified 2026-04-07):** Deepgram $0.0043/min applies to Nova-2 batch (pre-recorded) audio only. Nova-3 model costs $0.0077/min. Alternative: Whisper (free, runs locally) for zero-cost transcription at the expense of slightly lower accuracy.
+
 Decision: Start with Deepgram for speed and reliability. Switch to self-hosted Whisper if volume makes the cost meaningful (it won't for a long time -- even 1,000 submissions/month at 10 min average = $43/month).
 ```
 

@@ -182,6 +182,25 @@ What the operator does (10-15%):
 - Paid tier (3-5 automations): ~2-3 hours total
 - Retainer: ~3-5 hours/month
 
+## Customer-Facing Language
+
+**Decision (2026-04-07):** The service presents as "a team of experts" — not "AI-powered automation." This is commercially accurate (there IS a human quality gate) and appropriate for the target market (small business owners who are more comfortable paying humans).
+
+Example language:
+- "Our team of specialists will analyze your submission"
+- "Expert review of your business workflows"
+- "Personalized recommendations from our automation team"
+
+## Brand Structure
+
+**Decision (2026-04-07):** This product operates under ONE company brand alongside the niche SEO SaaS product. Anonymous company — no personal name or photo. The company name is TBD (open question).
+
+## Optional Intake Methods
+
+**Consideration (2026-04-07):** In addition to voice notes and file uploads:
+- **Loom screen recording**: Client records a walkthrough of their workflow. Frames extracted and fed to Claude Vision for analysis. Not primary intake method but available as an option.
+- **Zoom onboarding call**: Deferred for now. May be introduced as premium add-on once operator gains confidence. Screen share would be recorded and processed by AI.
+
 ## Non-Functional Requirements
 
 - **Turnaround time:** Audit report delivered within 24 hours of questionnaire completion
