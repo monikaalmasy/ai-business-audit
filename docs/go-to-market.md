@@ -219,6 +219,14 @@ The free audit is inherently shareable. Business owners talk to other business o
 | Ongoing support | $200-500/hr | Ad hoc, unreliable | $1.5-2.5K/month retainer |
 | Scalability | Limited by headcount | Limited by freelancer | 85-90% automated |
 
+## Cross-Sell with SEO SaaS
+
+**Decision (2026-04-07):** When cold emailing businesses, offer both the free SEO audit and the free AI assessment in the same outreach. The SEO audit is lower-friction (automated, no effort from them) and warms up the relationship for the AI assessment.
+
+## Spawni Referral Path
+
+**Consideration (2026-04-07):** When audit clients need ongoing AI agent implementation, recommend Spawni as the tool. This is a natural recommendation from a trusted advisor, not a brand merger. Revenue can come from Spawni affiliate/referral fees or simply from having more Spawni users.
+
 ## Risk Mitigation
 
 **Risk: Low conversion from free audit to paid tier**
