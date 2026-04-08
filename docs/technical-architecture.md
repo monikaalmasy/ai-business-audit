@@ -1,5 +1,7 @@
 # Technical Architecture
 
+> **Note (2026-04-08):** This document has been updated to align with the unified Python stack decision. See `technical-spec.md` for the builder-focused specification covering gaps in this document (security hardening, automation templates, operator workflow, production prompts).
+
 ## System Overview
 
 The AI Business Audit platform is a pipeline-oriented system. Data flows in one direction: client submission -> AI processing -> deliverable output. There is no complex user-facing application state. The frontend is a form. The backend is a series of processing stages. The output is a report.
@@ -13,7 +15,7 @@ Client Browser                Backend (Render.com)              External Service
 [Info Fields]    -----> [Supabase]     -----> [Claude Analysis]
                                        -----> [Claude Questionnaire]
                                        -----> [Claude Report Gen]
-                                       -----> [Puppeteer PDF]
+                                       -----> [WeasyPrint PDF]
                                        -----> [Resend Email]
                                        -----> [Stripe Checkout]
 ```
@@ -142,7 +144,7 @@ For each uploaded file:
   2. Process accordingly:
      - Images/Screenshots: Send directly to Claude Vision API
      - PDFs: Extract text (pdf-parse), also send pages as images to Claude Vision
-     - Spreadsheets: Parse with SheetJS (xlsx), convert to structured JSON
+     - Spreadsheets: Parse with openpyxl + pandas, convert to structured JSON
      - Documents: Extract text (mammoth for docx, raw read for txt)
   3. Claude analyzes each file with context from the transcription:
      System prompt: "You are analyzing files uploaded by a business owner as part of a business audit. The business owner described their situation as follows: {transcription_excerpt}. Analyze this file and identify: what tool/process it represents, what inefficiencies are visible, what data patterns exist, and what automation opportunities it suggests."
@@ -184,7 +186,7 @@ Claude API call:
         "title": "Automated invoice reminders",
         "problem_it_solves": "Manual invoice follow-ups",
         "proposed_solution": "...",
-        "tools_needed": ["Xero API", "Zapier", "custom email templates"],
+        "tools_needed": ["Xero API", "Make.com", "custom email templates"],
         "estimated_time_savings_hours": 35,
         "estimated_cost_savings_monthly": 1750,
         "implementation_complexity": "low",
@@ -254,7 +256,7 @@ Claude API call:
 
 Report rendering:
   - Markdown -> HTML using a branded template (CSS styling, company logo, professional layout)
-  - HTML -> PDF using Puppeteer (headless Chrome)
+  - HTML -> PDF using WeasyPrint (Python HTML-to-PDF library)
   - PDF stored in Supabase Storage: /submissions/{id}/report.pdf
   - HTML version served at /report/{submission_id}?token={token}
 
@@ -296,7 +298,7 @@ For each selected automation:
      - Client's current tools and constraints (from questionnaire)
      - Implementation requirements
   2. Agent builds the solution:
-     - Zapier/Make workflows: exported as shareable templates
+     - Make.com workflows: exported as shareable JSON blueprints
      - Custom scripts: GitHub repo with documentation
      - API integrations: deployed and configured
      - Dashboards: built and shared
@@ -331,10 +333,10 @@ Update project status to "delivered"
 
 ### Hosting
 - **Application server:** Render.com (Web Service, $25-$50/month)
-  - Node.js runtime
+  - Python 3.12+ with FastAPI runtime
   - Auto-scaling if needed (but unlikely at early stage)
   - Health checks and auto-restart
-- **Background jobs:** Render.com Background Worker (same deployment) or Bull queue with Redis
+- **Background jobs:** Render.com Background Worker (same deployment) or arq with Redis
 
 ### Database
 - **Supabase** (PostgreSQL)
@@ -358,7 +360,7 @@ Update project status to "delivered"
 ### Email
 - **Resend** (preferred) or **SendGrid**
   - Transactional emails: questionnaire delivery, report delivery, solution delivery
-  - Email templates stored in codebase (React Email or MJML)
+  - Email templates stored in codebase (Jinja2 HTML templates + Resend SDK)
   - Custom domain for sender reputation
 
 ### Video Delivery
@@ -499,7 +501,7 @@ GET    /api/project/:id/status        -- Check project build status (for paid cl
 | Claude business analysis | $0.20 |
 | Claude questionnaire generation | $0.08 |
 | Claude report generation | $0.20 |
-| PDF generation (Puppeteer compute) | $0.01 |
+| PDF generation (WeasyPrint compute) | $0.01 |
 | Email delivery (Resend) | $0.001 |
 | File storage (Supabase) | $0.001 |
 | **Total per free audit** | **$0.68** |
@@ -525,3 +527,29 @@ At 10% conversion to paid tier ($4,000 avg): $40,000 revenue, $68 cost = 99.8% g
 - **Supabase Dashboard** for database monitoring
 - **Stripe Dashboard** for payment monitoring
 - **Custom Slack alerts** for: new submissions, completed reports, new payments, errors
+
+## Error Handling Strategy
+
+| Service | Failure Mode | Response |
+|---------|-------------|----------|
+| Deepgram | API timeout/error | Retry 2x with exponential backoff. Fallback to Whisper (local). |
+| Claude API | Rate limit or error | Retry 2x. If persistent, queue for manual processing. |
+| File processing | Malformed/corrupted file | Skip file, note in analysis: "File [name] could not be processed." |
+| ClamAV | Virus detected | Reject submission. Notify operator. Do NOT process file. |
+| Stripe | Webhook failure | Return 200 to Stripe immediately. Log error. Alert operator. |
+| Supabase | Connection failure | Retry 3x. If persistent, return 503 to client. |
+| Resend | Email delivery failure | Log to email_events table. Retry after 1 hour, max 3 retries. |
+
+## Environment Variables
+
+See `.env.example` in the repo root for the complete list. Key variables:
+
+- `ANTHROPIC_API_KEY` — Claude API access
+- `DEEPGRAM_API_KEY` — Speech-to-text ($0.0043/min Nova-2 batch)
+- `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` — Database
+- `REDIS_URL` — Job queue (arq)
+- `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` — Payments
+- `RESEND_API_KEY` — Email delivery
+- `SENTRY_DSN` — Error tracking
+- `TURNSTILE_SECRET_KEY` — CAPTCHA on intake form
+- `CLAMAV_HOST` — Virus scanning service
