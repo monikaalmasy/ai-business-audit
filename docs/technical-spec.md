@@ -65,7 +65,7 @@ ai-business-audit/
 │   └── recorder.js               # MediaRecorder API implementation
 ├── automation_templates/
 │   ├── dental/
-│   │   ├── appointment_reminders.json    # Make.com blueprint
+│   │   ├── appointment_reminders.json    # n8n workflow JSON
 │   │   ├── review_requests.json
 │   │   ├── patient_followup.json
 │   │   ├── insurance_claims.json
@@ -157,45 +157,45 @@ This directly supersedes the approach described in technical-architecture.md Sta
 1. Audit analysis identifies which automations are relevant for the client
 2. Claude recommends specific templates from the library
 3. Operator configures templates with client-specific details (API keys, email addresses, schedules)
-4. Delivers as Make.com blueprint JSON files (Make supports JSON import/export) + configuration guide
-5. Client imports blueprints into their Make.com account
+4. Delivers as n8n workflow JSON files (n8n supports JSON import/export) + configuration guide
+5. Operator imports workflows into the hosted n8n instance (clients don't need their own account — we host and manage automations as part of the retainer)
 6. Operator provides a Loom walkthrough of the setup
 
 ### Dental Automation Template Library
 
 Build these 10 templates ONCE, configure per client:
 
-1. **Appointment Reminders** -- Make.com: Trigger (schedule) -> Read upcoming appointments from practice management API -> Send SMS via Twilio + email via Resend
+1. **Appointment Reminders** -- n8n: Trigger (schedule) -> Read upcoming appointments from practice management API -> Send SMS via Twilio + email via Resend
 
-2. **Review Request Automation** -- Make.com: Trigger (after appointment) -> Wait 2 hours -> Send review request email with direct Google review link
+2. **Review Request Automation** -- n8n: Trigger (after appointment) -> Wait 2 hours -> Send review request email with direct Google review link
 
-3. **Patient Follow-Up Sequences** -- Make.com: Trigger (treatment completed) -> Send follow-up email at Day 1, Day 7, Day 30
+3. **Patient Follow-Up Sequences** -- n8n: Trigger (treatment completed) -> Send follow-up email at Day 1, Day 7, Day 30
 
-4. **New Patient Welcome** -- Make.com: Trigger (new patient form submitted) -> Send welcome email + intake docs + directions
+4. **New Patient Welcome** -- n8n: Trigger (new patient form submitted) -> Send welcome email + intake docs + directions
 
-5. **Recall/Reactivation Campaigns** -- Make.com: Trigger (schedule, monthly) -> Query patients not seen in 6+ months -> Send recall email
+5. **Recall/Reactivation Campaigns** -- n8n: Trigger (schedule, monthly) -> Query patients not seen in 6+ months -> Send recall email
 
-6. **Insurance Claim Status Updates** -- Make.com: Trigger (claim submitted) -> Monitor status -> Notify patient when approved/denied
+6. **Insurance Claim Status Updates** -- n8n: Trigger (claim submitted) -> Monitor status -> Notify patient when approved/denied
 
-7. **Online Booking Confirmation** -- Make.com: Trigger (booking received) -> Send confirmation email + calendar invite + pre-appointment instructions
+7. **Online Booking Confirmation** -- n8n: Trigger (booking received) -> Send confirmation email + calendar invite + pre-appointment instructions
 
-8. **Cancellation/No-Show Follow-Up** -- Make.com: Trigger (appointment cancelled/no-show) -> Send rebooking email after 24 hours
+8. **Cancellation/No-Show Follow-Up** -- n8n: Trigger (appointment cancelled/no-show) -> Send rebooking email after 24 hours
 
-9. **Monthly Revenue Report** -- Make.com: Trigger (1st of month) -> Pull data from Xero/QuickBooks -> Generate summary -> Email to practice owner
+9. **Monthly Revenue Report** -- n8n: Trigger (1st of month) -> Pull data from Xero/QuickBooks -> Generate summary -> Email to practice owner
 
-10. **Social Media Review Alerts** -- Make.com: Trigger (new Google review) -> Notify practice owner via Slack/email -> Suggest response template
+10. **Social Media Review Alerts** -- n8n: Trigger (new Google review) -> Notify practice owner via Slack/email -> Suggest response template
 
-Each template is a JSON file that can be imported into Make.com. The operator customizes the configuration (practice name, email addresses, API credentials) but does NOT write the automation logic from scratch.
+Each template is a JSON file that can be imported into n8n. The operator customizes the configuration (practice name, email addresses, API credentials) but does NOT write the automation logic from scratch. n8n is self-hosted on Render.com ($0 extra) — one instance hosts all client automations.
 
 ### Plumbing Automation Template Library
 
 Build these templates in parallel with dental (same structure, different triggers and content):
 
-1. **Job Quoting** -- Make.com: Trigger (new enquiry) -> Auto-generate quote from template -> Send to customer
-2. **Invoice Chasing** -- Make.com: Trigger (invoice overdue) -> Send reminder sequence at Day 3, Day 7, Day 14
-3. **Scheduling and Dispatch** -- Make.com: Trigger (new booking) -> Assign to available tradesperson -> Send confirmation + directions
-4. **Review Requests** -- Make.com: Trigger (job completed) -> Wait 24 hours -> Send review request with Google link
-5. **Parts Inventory Alerts** -- Make.com: Trigger (schedule, weekly) -> Check stock levels -> Alert if below threshold
+1. **Job Quoting** -- n8n: Trigger (new enquiry) -> Auto-generate quote from template -> Send to customer
+2. **Invoice Chasing** -- n8n: Trigger (invoice overdue) -> Send reminder sequence at Day 3, Day 7, Day 14
+3. **Scheduling and Dispatch** -- n8n: Trigger (new booking) -> Assign to available tradesperson -> Send confirmation + directions
+4. **Review Requests** -- n8n: Trigger (job completed) -> Wait 24 hours -> Send review request with Google link
+5. **Parts Inventory Alerts** -- n8n: Trigger (schedule, weekly) -> Check stock levels -> Alert if below threshold
 
 ## Operator Review Workflow
 
@@ -218,7 +218,7 @@ Build these templates in parallel with dental (same structure, different trigger
 12. Operator configures templates with client details (API keys, email addresses, schedules) -- estimated 30-60 minutes
 13. Operator tests each automation end-to-end
 14. Operator records Loom walkthrough (10-20 min) demonstrating each automation
-15. Status: `build_delivered` -> email with Loom link + Make.com blueprint JSON files + configuration guide
+15. Status: `build_delivered` -> email with Loom link + n8n workflow JSON files + configuration guide
 
 ### Internal Review Page (to build)
 

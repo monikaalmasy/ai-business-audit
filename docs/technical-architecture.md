@@ -186,7 +186,7 @@ Claude API call:
         "title": "Automated invoice reminders",
         "problem_it_solves": "Manual invoice follow-ups",
         "proposed_solution": "...",
-        "tools_needed": ["Xero API", "Make.com", "custom email templates"],
+        "tools_needed": ["Xero API", "n8n", "custom email templates"],
         "estimated_time_savings_hours": 35,
         "estimated_cost_savings_monthly": 1750,
         "implementation_complexity": "low",
@@ -298,7 +298,7 @@ For each selected automation:
      - Client's current tools and constraints (from questionnaire)
      - Implementation requirements
   2. Agent builds the solution:
-     - Make.com workflows: exported as shareable JSON blueprints
+     - n8n workflows: exported as shareable JSON files (self-hosted on Render.com)
      - Custom scripts: GitHub repo with documentation
      - API integrations: deployed and configured
      - Dashboards: built and shared
