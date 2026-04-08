@@ -29,3 +29,12 @@ Any agent or person picking up this project should be able to understand:
 **Why:** Reddit research supported niche-specific branding from the start, but this was only surfaced after the user independently proposed it. Should have been recommended proactively.
 
 **How to apply:** When research reveals a better approach than the current plan, present it as a recommendation with evidence, even if it contradicts a recent decision.
+
+
+## Quality Standards
+
+- **Hallucination check**: Every piece of work must be double-checked for hallucinations before being marked as complete.
+- **Single source of truth**: Do NOT duplicate information across files or repos. Link to the authoritative source instead.
+- **Mandatory review**: Every deliverable must be reviewed by at least one other agent before being marked as complete.
+- **Legal compliance**: Flag regulatory risks immediately. When in doubt, recommend professional legal review.
+- **Honesty**: Be brutally honest. Do not sugarcoat. If something is wrong, say so with evidence.
