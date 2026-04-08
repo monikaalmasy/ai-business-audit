@@ -2,6 +2,10 @@
 
 Items discussed but NOT finalized. These need further exploration before becoming decisions.
 
+## Dental Brand Name — RESOLVED
+
+**Decision (2026-04-08):** First niche brand is "Scale & Polish" (scaleandpolish.com.au). Dental insider term for professional teeth cleaning. Double meaning: scale (grow) + polish (refine) your practice. Zero brand conflicts, trademarkable in Class 35/42.
+
 ## Company Name [OUTDATED as of 2026-04-08: replaced by niche-specific brand names]
 
 ## Customer-Facing Communication
