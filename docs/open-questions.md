@@ -2,6 +2,8 @@
 
 Items discussed but NOT finalized. These need further exploration before becoming decisions.
 
+## Company Name [OUTDATED as of 2026-04-08: replaced by niche-specific brand names]
+
 ## Customer-Facing Communication
 
 - **"Team of experts" positioning**: If standalone (not Spawni-branded), we can position the service as "a team of experts will evaluate your uploads" rather than "AI processes everything." This is commercially advantageous — many SMB owners are more comfortable paying humans. Not deceptive (there IS a human quality gate), just not leading with AI.
@@ -66,3 +68,32 @@ Rationale: User wants polished experience from day one. 10+ hours/week time budg
 - **Current decision**: Start standalone, merge into Spawni later
 - **Trigger for merge**: When Spawni is fully launched AND the audit service has 10+ paying clients
 - **See**: [spawni-integration-plan.md](spawni-integration-plan.md) for the migration path
+
+## AHPRA Legal Compliance
+
+**Risk Flag (2026-04-08):** AHPRA strictly regulates dental advertising in Australia:
+- No patient testimonials
+- No before/after photos without strict conditions
+- No "specialist" claims unless registered with Dental Board
+- Fines up to $5K individual / $10K corporate per offence
+
+**Required Action:** Every SEO report/recommendation for Australian dental clients MUST go through an AHPRA compliance check before delivery. The pipeline needs a legal compliance step that filters out non-compliant recommendations based on client location and profession.
+
+## Cold Email Infrastructure
+
+**Note (2026-04-08):** Cold email domain warm-up takes 2-4 weeks. Use a SEPARATE domain from the main brand domain (never cold email from primary domain). Start warm-up on day 1 alongside the build.
+
+Warm-up cadence: 5-10/day (week 1) → 15-25 (week 2) → 30-50 (week 3) → 50-100 (week 4+)
+
+Each niche brand gets its own cold email domain. All warm up in parallel.
+
+## Call Playbook
+
+**Open Question (2026-04-08):** When a client replies "Can I jump on a call?" — what happens?
+
+Options:
+- "Our team works async for efficiency — here's a Loom walkthrough instead"
+- User takes the call (they're open to this if necessary)
+- Hire a call handler later (deferred)
+
+Need: Prepared response template for this scenario before first cold email goes out.

@@ -21,3 +21,11 @@ Any agent or person picking up this project should be able to understand:
 2. What is still open
 3. What information is current vs outdated
 4. Where to find related context in other repos
+
+## Feedback
+
+**Feedback (2026-04-08):** Don't keep strategic insights to yourself. If research data contradicts a current decision or suggests a significantly better approach, raise it IMMEDIATELY — don't wait for the user to discover it. The user prefers strong business cases over comfort. Challenge decisions when evidence supports a different path.
+
+**Why:** Reddit research supported niche-specific branding from the start, but this was only surfaced after the user independently proposed it. Should have been recommended proactively.
+
+**How to apply:** When research reveals a better approach than the current plan, present it as a recommendation with evidence, even if it contradicts a recent decision.

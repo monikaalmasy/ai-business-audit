@@ -201,6 +201,37 @@ Example language:
 - **Loom screen recording**: Client records a walkthrough of their workflow. Frames extracted and fed to Claude Vision for analysis. Not primary intake method but available as an option.
 - **Zoom onboarding call**: Deferred for now. May be introduced as premium add-on once operator gains confidence. Screen share would be recorded and processed by AI.
 
+## Legal Compliance Check (Pipeline Step)
+
+**Decision (2026-04-08):** Every report and recommendation must pass through a legal compliance check before delivery. The check is based on the client's profession AND geographical location.
+
+Known restrictions:
+- **Australian dental practices (AHPRA):** No testimonials, no specialist claims, no misleading before/after photos
+- **Australian legal (state-specific):** Restrictions on personal injury advertising (QLD/NSW)
+- **US:** Varies by state and profession. Generally more permissive.
+
+Implementation: Claude checks each recommendation against a compliance rules database before including it in the report. Non-compliant recommendations are either modified or flagged for human review.
+
+## Niche-Specific Automation Examples
+
+**Decision (2026-04-08):** The audit service is niche-specific per brand. Each brand recommends automations relevant to that profession.
+
+**Dental practices:**
+- Appointment reminders (SMS/email)
+- Patient follow-up sequences
+- Insurance claim processing
+- Review request automation
+- New patient onboarding
+- Recall/reactivation campaigns
+
+**Plumbing/trades:**
+- Job quoting automation
+- Invoice chasing
+- Scheduling and dispatch
+- Customer follow-up after job completion
+- Review request automation
+- Parts inventory alerts
+
 ## Non-Functional Requirements
 
 - **Turnaround time:** Audit report delivered within 24 hours of questionnaire completion
